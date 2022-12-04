@@ -1,0 +1,66 @@
+.mar-1 {
+    margin: 0 100px;
+}
+
+.mar-3 {
+    margin: 0 200px;
+}
+
+.pad-1 {
+    padding: 50px 0;
+}
+
+.pad-2 {
+    padding: 75px 0;
+}
+
+.pad-3 {
+    padding: 100px 0;
+}
+
+.cussor {
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.cussor:hover {
+    scale: 1.2;
+}
+
+.overfl {
+    overflow: hidden;
+}
+
+.pos-model {
+    position: relative;
+}
+
+.model-css {
+    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
+    border-radius: 10px;
+}
+
+.pos-glasses {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    margin-top: 7%;
+    padding: 25%;
+    opacity: .8;
+}
+
+.pos-infoGlasses {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(255, 0, 255, 0.356);
+    mix-blend-mode: darken;
+    padding: 20px;
+    transition: all .5s;
+    border-radius: 0 0 10px 10px;
+}
+
+.info-title {
+    color: red;
+}
