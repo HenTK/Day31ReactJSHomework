@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class Glasses extends Component {
+class Glasses extends Component {
   render() {
     return (
-      <div>
-        <h3 className='info-title'>{this.props.state.name}</h3>
-        <div>id: {this.props.state.id}</div>
-        <div>price: {this.props.state.price}$</div>  
-        <div>description: {this.props.state.desc}</div>  
+      <div className=''>
+        <h3 className='info-title info'>{this.props.glassesInfo.name}</h3>
+        <div className='info'>id: {this.props.glassesInfo.id}</div>
+        <div className='info'>price: {this.props.glassesInfo.price}$</div>  
+        <h4 className='info'>description: {this.props.glassesInfo.desc}</h4>  
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    glassesInfo: state.tryglassesReducer.glassesInfo,
+  };
+};
+
+export default connect(mapStateToProps)(Glasses);

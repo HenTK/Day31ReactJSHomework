@@ -4,37 +4,18 @@ import glassesList from '../../data/dataGlasses.json'
 import Glasses from './Glasses'
 import GlassesModel from './GlassesModel'
 import Header from './Header'
+import { connect } from 'react-redux';
 
-export default class TryGlasses extends Component {
+class TryGlasses extends Component {
   renderGlassesList = () => {
-    const content = glassesList.map(element => {
+    console.log(this.props.glassesList);
+    const content = this.props.glassesList.map(element => {
       return  (<GlassesModel
                 element = {element}
-                handleChangeGlasses = {this.handleChangeGlasses}
+                handleChangeGlasses = {this.props.handleChangeGlasses}
                 />)
-  })
-  return content;
-  }
-
-  state = {
-    id: 1,
-    price: 30,
-    name: "GUCCI G8850U",
-    desc: "Light pink square lenses define these sunglasses, ending with amother of pearl effect tip. ",
-    url: './Images/v1.png',
-  }
-
-  handleChangeGlasses = (color) => {
-    glassesList.forEach((element)=>{
-      if(color == element.id)
-      this.setState({
-        url: element.url,
-        id: element.id,
-        price: element.price,
-        name: element.name,
-        desc: element.desc,
-      })
-    })
+              })
+      return content;
   }
 
   render() {
@@ -45,11 +26,9 @@ export default class TryGlasses extends Component {
           <div className='col-3 mar-1 pad-1'>
             <div className='pos-model'>
                 <img src="./Images/model.jpg" alt=""  className='w-100 model-css' />
-                <img src={this.state.url} className='w-100 pos-glasses'/>
+                <img src={this.props.glassesInfo.url} className='w-100 pos-glasses'/>
                 <div className='pos-infoGlasses'>
-                    <Glasses
-                    state = {this.state}
-                    />
+                    <Glasses/>
                 </div>
             </div>
           </div>
@@ -59,10 +38,30 @@ export default class TryGlasses extends Component {
         </div>
         <div className='mar-3 pad-2'>
           <div className='row bg-white overfl'>
-            {this.renderGlassesList()};
+            {this.renderGlassesList()}
           </div>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    glassesList: state.tryglassesReducer.glassesList,
+    glassesInfo: state.tryglassesReducer.glassesInfo,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleChangeGlasses(id) {
+      dispatch({
+        type: "CHANGE_ITEM",
+        payload: id,
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TryGlasses);
